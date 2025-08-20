@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtqna25eeq30c"]
+
+[ext_resource type="Script" uid="uid://d0w5m4pxf0qy7" path="res://player/player.gd" id="1_g1dw6"]
+[ext_resource type="Texture2D" uid="uid://boqrm4oi7vpqx" path="res://assets/player.png" id="2_yw30f"]
+[ext_resource type="Texture2D" uid="uid://cguwbu2uplrl7" path="res://assets/rocketlauncher.png" id="3_qjkh3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wt17y"]
+radius = 16.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_g1dw6")
+
+[node name="Body" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("2_yw30f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+shape = SubResource("CircleShape2D_wt17y")
+
+[node name="Gun" type="Sprite2D" parent="."]
+position = Vector2(-6, -11)
+scale = Vector2(-1, 1)
+texture = ExtResource("3_qjkh3")
+offset = Vector2(8.1198, -0.270699)
