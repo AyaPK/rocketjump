@@ -35,5 +35,4 @@ func _physics_process(delta: float) -> void:
 	else:
 		visuals.scale.x = 1
 		face_left = true
-		# Move the player
 	move_and_slide()
