@@ -10,7 +10,7 @@ func _ready():
 	queue_free() # explosion only lasts a short time
 
 func _on_body_entered(body):
-	if body is CharacterBody2D:
+	if body in get_tree().get_nodes_in_group("player"):
 		var to_body = body.global_position - global_position
 		var distance = to_body.length()
 		if distance == 0:

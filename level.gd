@@ -8,9 +8,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("click"):
-		var global_mouse_pos: Vector2 = get_global_mouse_position()
-		var explosion: Area2D = EXPLOSION.instantiate()
-		explosion.global_position = global_mouse_pos
-		add_child(explosion)
+	#if Input.is_action_just_pressed("click"):
+		#var global_mouse_pos: Vector2 = get_global_mouse_position()
+		#var explosion: Area2D = EXPLOSION.instantiate()
+		#explosion.global_position = global_mouse_pos
+		#add_child(explosion)
 	pass

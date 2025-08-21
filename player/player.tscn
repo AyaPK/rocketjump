@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_wt17y"]
 radius = 16.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_g1dw6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -26,3 +26,5 @@ rotation = 3.14159
 scale = Vector2(-1.5, 1.5)
 texture = ExtResource("3_qjkh3")
 offset = Vector2(2.02542, -0.671567)
+
+[node name="Camera2D" type="Camera2D" parent="."]

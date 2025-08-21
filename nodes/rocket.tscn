@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://6wm2vuae7qdr"]
+
+[ext_resource type="Script" uid="uid://cgr4o4oqvubat" path="res://nodes/rocket.gd" id="1_mjoaw"]
+[ext_resource type="Texture2D" uid="uid://doxu5np8d8wbr" path="res://icon.svg" id="2_ejgyq"]
+[ext_resource type="PackedScene" uid="uid://i6vhhty53sty" path="res://nodes/explosion.tscn" id="2_yf1d8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o00ia"]
+
+[node name="Rocket" type="Area2D"]
+script = ExtResource("1_mjoaw")
+explosion_scene = ExtResource("2_yf1d8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5.96046e-08, 0)
+scale = Vector2(0.15625, 0.15625)
+texture = ExtResource("2_ejgyq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_o00ia")
