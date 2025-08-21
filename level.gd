@@ -14,3 +14,7 @@ func _process(delta: float) -> void:
 		#explosion.global_position = global_mouse_pos
 		#add_child(explosion)
 	pass
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	get_tree().change_scene_to_file("res://playground.tscn")

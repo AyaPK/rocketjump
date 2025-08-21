@@ -9,6 +9,8 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 
 func _physics_process(delta: float) -> void:
+	if direction != Vector2.ZERO:
+		rotation = direction.angle()  # Rotate sprite to face movement
 	position += direction * speed * delta
 
 func _on_body_entered(body):

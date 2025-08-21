@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://i6vhhty53sty"]
 
 [ext_resource type="Script" uid="uid://bma7r32skoi8i" path="res://nodes/explosion.gd" id="1_hjmkv"]
-[ext_resource type="Texture2D" uid="uid://doxu5np8d8wbr" path="res://icon.svg" id="2_7pcsp"]
+[ext_resource type="Texture2D" uid="uid://dblee3sygkccs" path="res://assets/explosion.png" id="2_7pcsp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rupst"]
 radius = 150.0
@@ -13,6 +13,6 @@ script = ExtResource("1_hjmkv")
 shape = SubResource("CircleShape2D_rupst")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(3.8147e-06, 3.8147e-06)
-scale = Vector2(2, 2)
+position = Vector2(8.00001, 44)
+scale = Vector2(10.375, 10.375)
 texture = ExtResource("2_7pcsp")
