@@ -33,4 +33,6 @@ func explode():
 	explosion.emitting = true
 
 	await explosion.finished
+	explosion.queue_free()
+	await explosion.tree_exited
 	queue_free()
