@@ -18,4 +18,4 @@ func _on_body_entered(body):
 		var dir = to_body.normalized()
 		var strength = max_force * (1.0 - clamp(distance / radius, 0.0, 1.0))
 		body.knockback = dir * strength
-		queue_free()
+		

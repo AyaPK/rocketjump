@@ -2,12 +2,12 @@ extends CharacterBody2D
 
 @export var rocket_scene: PackedScene
 @export var move_speed: float = 200.0
+@export var air_control: float = 1 # percentage of control while in air (0.0 = none, 1.0 = full)
 
 @onready var gun: Sprite2D = $Visuals/Gun
 @onready var visuals: Node2D = $Visuals
 
 var face_left: bool
-
 const GRAVITY = 700.0
 
 var knockback: Vector2 = Vector2.ZERO
@@ -20,16 +20,22 @@ func _physics_process(delta: float) -> void:
 		if velocity.y > 0:
 			velocity.y = 0
 
-		# Only allow horizontal input when grounded
-		var input_dir := Input.get_axis("move_left", "move_right")
+	# Handle horizontal movement (both ground + air)
+	var input_dir := Input.get_axis("move_left", "move_right")
+
+	if is_on_floor():
+		# Full ground control
 		if input_dir != 0:
 			velocity.x = input_dir * move_speed
 		else:
-			# Stop horizontal movement when no input (unless knocked back)
 			if knockback == Vector2.ZERO:
 				velocity.x = 0
+	else:
+		# Limited air control (additive instead of instant snap)
+		if input_dir != 0:
+			velocity.x = lerp(velocity.x, input_dir * move_speed, air_control * delta)
 
-	# Apply knockback (always applies, air or ground)
+	# Apply knockback (always applies)
 	velocity += knockback
 	knockback = knockback.move_toward(Vector2.ZERO, 600 * delta)
 
@@ -54,7 +60,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _input(event):
-	if event.is_action_pressed("click"): # define "shoot" in Input Map (e.g. left mouse)
+	if event.is_action_pressed("click"):
 		fire_rocket()
 
 
