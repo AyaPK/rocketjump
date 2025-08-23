@@ -28,3 +28,8 @@ texture = ExtResource("3_qjkh3")
 offset = Vector2(2.02542, -0.671567)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="FireTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]

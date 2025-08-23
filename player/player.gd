@@ -9,7 +9,7 @@ extends CharacterBody2D
 
 var face_left: bool
 const GRAVITY = 700.0
-
+var can_fire: bool = true
 var knockback: Vector2 = Vector2.ZERO
 
 func _physics_process(delta: float) -> void:
@@ -65,13 +65,23 @@ func _input(event):
 
 
 func fire_rocket():
-	if rocket_scene == null:
-		return
+	if can_fire:
+		if rocket_scene == null:
+			return
 
-	var rocket = rocket_scene.instantiate()
-	var global_mouse_pos = get_global_mouse_position()
-	var dir = (global_mouse_pos - gun.global_position).normalized()
+		var rocket = rocket_scene.instantiate()
+		var global_mouse_pos = get_global_mouse_position()
+		var dir = (global_mouse_pos - gun.global_position).normalized()
 
-	rocket.global_position = gun.global_position
-	rocket.direction = dir
-	get_parent().add_child(rocket)
+		rocket.global_position = gun.global_position
+		rocket.direction = dir
+		get_parent().add_child(rocket)
+
+		if not is_on_floor():
+			var recoil_strength: float = 60.0
+			knockback += -dir * recoil_strength
+		can_fire = false
+		$FireTimer.start()
+
+func _on_fire_timer_timeout() -> void:
+	can_fire = true
