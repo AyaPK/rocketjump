@@ -12,6 +12,10 @@ const GRAVITY = 700.0
 var can_fire: bool = true
 var knockback: Vector2 = Vector2.ZERO
 
+func _process(delta: float) -> void:
+	print($FireTimer.time_left)
+	$ProgressBar.value = $FireTimer.time_left * 200
+
 func _physics_process(delta: float) -> void:
 	# Apply gravity
 	if not is_on_floor():
