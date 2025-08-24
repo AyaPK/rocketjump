@@ -11,12 +11,11 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 	$CollisionShape2D.disabled = false
 
-	# Scale the collision shape radius dynamically
 	var shape = $CollisionShape2D.shape
 	if shape is CircleShape2D:
 		shape.radius = base_radius * strength
 
-	# Explosion only lasts briefly
+	PlayerManager.player.camera.shake(strength*4)
 	await get_tree().create_timer(0.05).timeout
 	queue_free()
 
@@ -26,7 +25,6 @@ func _on_body_entered(body):
 		var distance = max(to_body.length(), 0.01)
 		var dir = to_body.normalized()
 
-		# Scale knockback by strength
 		var force = base_force * strength
 		var effective_radius = base_radius * strength
 

@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 @export var rocket_scene: PackedScene
 @export var move_speed: float = 200.0
@@ -13,6 +13,7 @@ var charge_time: float = 3.0
 
 @onready var gun: Sprite2D = $Visuals/Gun
 @onready var visuals: Node2D = $Visuals
+@onready var camera: PlayerCamera = $Camera2D
 
 var face_left: bool
 const GRAVITY = 700.0
@@ -25,6 +26,7 @@ var can_charge: bool = false
 
 func _ready() -> void:
 	$FireTimer.wait_time = reload_time
+	PlayerManager.player = self
 	can_charge = PlayerManager.has_ability("charge_shot")
 	reload_time = PlayerManager.reload_time
 
