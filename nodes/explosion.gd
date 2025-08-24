@@ -1,21 +1,34 @@
 extends Area2D
 
-@export var max_force: float = 120.0   # strongest push
-@export var radius: float = 150.0       # blast radius
+@export var base_force: float = 120.0   # default strongest push
+@export var base_radius: float = 150.0  # default blast radius
+
+@export var explosion_sfx: AudioStream
+
+var strength: float = 1.0
 
 func _ready():
 	body_entered.connect(_on_body_entered)
 	$CollisionShape2D.disabled = false
+
+	# Scale the collision shape radius dynamically
+	var shape = $CollisionShape2D.shape
+	if shape is CircleShape2D:
+		shape.radius = base_radius * strength
+
+	# Explosion only lasts briefly
 	await get_tree().create_timer(0.05).timeout
-	queue_free() # explosion only lasts a short time
+	queue_free()
 
 func _on_body_entered(body):
 	if body in get_tree().get_nodes_in_group("player"):
 		var to_body = body.global_position - global_position
-		var distance = to_body.length()
-		if distance == 0:
-			distance = 0.01
+		var distance = max(to_body.length(), 0.01)
 		var dir = to_body.normalized()
-		var strength = max_force * (1.0 - clamp(distance / radius, 0.0, 1.0))
-		body.knockback = dir * strength
-		
+
+		# Scale knockback by strength
+		var force = base_force * strength
+		var effective_radius = base_radius * strength
+
+		var knock = force * (1.0 - clamp(distance / effective_radius, 0.0, 1.0))
+		body.knockback = dir * knock

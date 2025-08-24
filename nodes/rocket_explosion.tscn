@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cn2ntp184ik7o"]
+[gd_scene load_steps=8 format=3 uid="uid://cn2ntp184ik7o"]
 
 [ext_resource type="Texture2D" uid="uid://bdhvr50hhip62" path="res://assets/Explosion_Sheet.png" id="1_v641x"]
 [ext_resource type="Script" uid="uid://ctu6q7n28v5ec" path="res://nodes/rocket_explosion.gd" id="2_uuuyn"]
+[ext_resource type="AudioStream" uid="uid://ci0v1g414vlyx" path="res://assets/sfx/rocket_explosion.wav" id="3_fwmck"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_uuuyn"]
 blend_mode = 1
@@ -40,3 +41,7 @@ one_shot = true
 explosiveness = 0.36
 process_material = SubResource("ParticleProcessMaterial_kf0r1")
 script = ExtResource("2_uuuyn")
+
+[node name="sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_fwmck")
+autoplay = true

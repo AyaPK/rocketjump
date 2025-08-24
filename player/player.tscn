@@ -1,8 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtqna25eeq30c"]
+[gd_scene load_steps=11 format=3 uid="uid://dtqna25eeq30c"]
 
 [ext_resource type="Script" uid="uid://d0w5m4pxf0qy7" path="res://player/player.gd" id="1_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://boqrm4oi7vpqx" path="res://assets/player.png" id="2_yw30f"]
 [ext_resource type="Texture2D" uid="uid://cguwbu2uplrl7" path="res://assets/rocketlauncher.png" id="3_qjkh3"]
+[ext_resource type="Texture2D" uid="uid://dno7ycqpm24v1" path="res://assets/charge_bar_empty.png" id="4_g6k8r"]
+[ext_resource type="Texture2D" uid="uid://cjncwvwb1md7k" path="res://assets/reload_bar_empty.png" id="4_hg6s5"]
+[ext_resource type="AudioStream" uid="uid://c7s61gmp04s8a" path="res://assets/sfx/rocket_charge.wav" id="4_yw30f"]
+[ext_resource type="Texture2D" uid="uid://cm1f6k007yjq5" path="res://assets/reload_bar_full.png" id="5_8t03j"]
+[ext_resource type="Texture2D" uid="uid://5mdlqc6ynen1" path="res://assets/charge_bar_full.png" id="5_boad6"]
+[ext_resource type="AudioStream" uid="uid://b0kh5vhkno243" path="res://assets/sfx/shoot.wav" id="5_qjkh3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wt17y"]
 radius = 16.0
@@ -30,15 +36,31 @@ offset = Vector2(2.02542, -0.671567)
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="FireTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 2.0
 one_shot = true
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = -24.0
-offset_top = -42.0
-offset_right = 25.0
-offset_bottom = -35.0
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
+offset_left = -34.0
+offset_top = -46.0
+offset_right = 30.0
+offset_bottom = -30.0
 value = 50.0
-show_percentage = false
+texture_under = ExtResource("4_hg6s5")
+texture_progress = ExtResource("5_8t03j")
+
+[node name="ChargeBar" type="TextureProgressBar" parent="."]
+offset_left = -34.0
+offset_top = -57.0
+offset_right = 30.0
+offset_bottom = -41.0
+texture_under = ExtResource("4_g6k8r")
+texture_progress = ExtResource("5_boad6")
+
+[node name="ChargeSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_yw30f")
+volume_db = -10.0
+
+[node name="ShootSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_qjkh3")
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]

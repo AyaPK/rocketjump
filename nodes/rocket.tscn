@@ -19,3 +19,7 @@ texture = ExtResource("3_ejgyq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_o00ia")
+
+[node name="ScreenCheck" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="ScreenCheck" to="." method="_on_screen_check_screen_exited"]
