@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://drxmhj67j1kte"]
+
+[ext_resource type="Texture2D" uid="uid://cql601tkudj0y" path="res://assets/arrow.png" id="1_ir4dn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_518ay"]
+size = Vector2(32, 32)
+
+[node name="AbilityUnlock" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_518ay")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ir4dn")
