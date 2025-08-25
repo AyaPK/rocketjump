@@ -24,11 +24,16 @@ var reload_time: float = 1.0
 # ========= ABILITY FLAGS ===================
 var can_charge: bool = false
 
+
 func _ready() -> void:
 	$FireTimer.wait_time = reload_time
 	PlayerManager.player = self
-	can_charge = PlayerManager.has_ability("charge_shot")
 	reload_time = PlayerManager.reload_time
+	load_abilities()
+
+func load_abilities() -> void:
+	print("a")
+	can_charge = PlayerManager.has_ability("charge_shot")
 
 func _process(delta: float) -> void:
 	$ProgressBar.value = ($FireTimer.time_left / $FireTimer.wait_time) * 100

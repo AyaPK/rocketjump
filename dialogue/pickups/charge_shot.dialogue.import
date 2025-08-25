@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bqvqlqhc7g8te"
+path="res://.godot/imported/charge_shot.dialogue-e2dad11fe179b475b9b61202dd29de26.tres"
+
+[deps]
+
+source_file="res://dialogue/pickups/charge_shot.dialogue"
+dest_files=["res://.godot/imported/charge_shot.dialogue-e2dad11fe179b475b9b61202dd29de26.tres"]
+
+[params]
+
+defaults=true
